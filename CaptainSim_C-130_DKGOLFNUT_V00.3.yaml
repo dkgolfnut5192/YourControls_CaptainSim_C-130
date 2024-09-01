@@ -1,0 +1,1813 @@
+# Version 0.3
+### - KNOWN ISSUES 
+# AUG 31, 2024
+    # - I have disconnected the following items on the CLIPBOARD due to conflicts so Each pilot will need to control the items separately. 
+     # - ENTRY DOOR, PARATROOP LEFT/RIGHT DOORS, RAMP
+     # - FORMATION LIGHTS KNOB is not synchronizing properly. You will both have to adjust as you see fit.
+     # - AP MASTER SWITCH WILL NOT SYNCHRONIZE when turning ON and will have to be turned on manually by each pilot. I do have code to turn it off and that is synchronized.
+### -  FIXES
+# SEP 1, 2024
+    # - Fixed AP MASTER SWITCH Synch for turning OFF. Still no solution yet for truning it ON synchronized
+# AUG 31, 2024
+    # - Fixed numerous toggle switches, Valves, and light switches/dimmers
+    # - Removed ENTRY DOOR, PARATROOP LEFT/RIGHT DOORS, RAMP from Clipboard sync due to impact on doors continmually opening and closing
+include:
+  - definitions/modules/Instruments/AS_GNS430.yaml
+  - definitions/modules/Instruments/AS_GNS530.yaml
+  - definitions/modules/Instruments/AS_GTX330.yaml
+  - definitions/modules/Instruments/AS_GNS650.yaml  
+  - definitions/modules/Instruments/AS_KR87.yaml 
+  - definitions/modules/Instruments/AS_KAP140.yaml
+  - definitions/modules/Instruments/PMS50_GNS.yaml
+  - definitions/modules/Instruments/PMS50_GTN.yaml
+  - definitions/modules/Instruments/TDS_GTNXi.yaml
+#  - definitions/modules/autopilot.yaml
+  - definitions/modules/controls.yaml
+#  - definitions/modules/deice.yaml
+#  - definitions/modules/engines.yaml
+#  - definitions/modules/fuel.yaml
+  - definitions/modules/general.yaml
+#  - definitions/modules/handling.yaml
+#  - definitions/modules/lights.yaml
+#  - definitions/modules/navigation.yaml
+#  - definitions/modules/pressurization.yaml
+  - definitions/modules/radios.yaml
+#  - definitions/modules/safety.yaml
+  
+  
+shared:
+
+#  - # LVAR's
+#  - #############  CoPILOT PANELS RIGHT ARM AND BEHIND #############
+#  - ## PARATROOP PANEL AREA ##
+  - #
+    type: var
+    var_name: L:B01_007_GL6
+  - #
+    type: var
+    var_name: L:B01_006_BUT
+  - #
+    type: var
+    var_name: L:B01_005_CAP
+  - #
+    type: var
+    var_name: L:B01_005_SW3
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:61
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 61
+    index_reversed: true
+#    unreliable: true
+  - # 
+    type: NumSet
+    var_name: A:LIGHT PANEL ON:5
+    var_units: Bool
+    var_type: f64
+    event_name: LIGHT_PANEL_ON
+    event_param: 5
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:62
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 62
+    index_reversed: true
+#    unreliable: true
+  - # 
+    type: NumSet
+    var_name: A:LIGHT PANEL ON:6
+    var_units: Bool
+    var_type: f64
+    event_name: LIGHT_PANEL_ON
+    event_param: 6
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:63
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 63
+    index_reversed: true
+#    unreliable: true
+  - # 
+    type: NumSet
+    var_name: A:LIGHT GLARESHIELD:3
+    var_units: Bool
+    var_type: f64
+    event_name: GLARESHIELD_LIGHTS_SET
+    event_param: 3
+
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:64
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 64
+    index_reversed: true
+  - # 
+    type: NumSet
+    var_name: A:LIGHT PANEL ON:3
+    var_units: Bool
+    var_type: f64
+    event_name: LIGHT_PANEL_ON
+    event_param: 3
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:65
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 65
+    index_reversed: true
+  - # 
+    type: NumSet
+    var_name: A:LIGHT GLARESHIELD:2
+    var_units: Bool
+    var_type: f64
+    event_name: GLARESHIELD_LIGHTS_SET
+    event_param: 2
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:66
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 66
+    index_reversed: true
+  - # 
+    type: NumSet
+    var_name: A:LIGHT PANEL ON:8
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_PANEL_ON
+    event_param: 8
+
+#  - #############  CoPILOT PANELS - FRONT UPPER #############
+  - # GEAR HANDLE
+    type: var
+    var_name: L:R19_001_LT0 
+  -
+    type: NumSet
+    var_name: A:GEAR HANDLE POSITION
+    var_units: Bool
+    var_type: f64    
+    event_name: GEAR_SET
+#    unreliable: true
+
+#  - ## LIGHTING PANEL - CoPILOT ##
+  - # 
+    type: NumSet
+    var_name: A:LIGHT TAXI:1
+    var_units: Bool
+    var_type: f64
+    event_name: TOGGLE_TAXI_LIGHTS
+    event_param: 1
+  - #
+    type: var
+    var_name: L:R18_001_SW3
+  - # 
+    type: ToggleSwitch
+    var_name: A:LIGHT LANDING:1
+    var_units: Bool
+    var_type: bool
+    event_name: LANDING_LIGHTS_TOGGLE
+    event_param: 1
+  - #
+    type: var
+    var_name: L:R18_002_SW3
+  - # 
+    type: ToggleSwitch
+    var_name: A:LIGHT LANDING:2
+    var_units: Bool
+    var_type: bool
+    event_name: LANDING_LIGHTS_TOGGLE
+    event_param: 2
+
+#  - ## HSI KNOBS - CoPILOT ## 
+  - #
+    type: var
+    var_name: L:R11_010_KNO
+  - #
+    type: var
+    var_name: L:R11_001_IND
+    unreliable: true
+  - #
+    type: var
+    var_name: L:R11_007_KNO
+  - #
+    type: var
+    var_name: L:R11_005_IND
+    unreliable: true
+  - #
+    type: var
+    var_name: L:R11_005_NDL
+    unreliable: true
+
+#  - ## ALTIMETER KNOBS - CoPILOT ##
+  -
+    type: NumIncrement
+    var_name: L:R08_005_KNO
+    var_units: enum
+    var_type: f64    
+    up_event_name: KOHLSMAN_INC
+    down_event_name: KOHLSMAN_DEC
+    increment_by: 1
+#    unreliable: true
+  - #
+    type: var
+    var_name: L:R11_003_DG1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:R11_003_DG2
+    unreliable: true
+  - #
+    type: var
+    var_name: L:R11_003_DG3
+    unreliable: true
+  - #
+    type: var
+    var_name: L:R11_015_DG1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:R11_015_DG2
+    unreliable: true
+  - #
+    type: var
+    var_name: L:R11_015_DG3
+    unreliable: true    
+  - # FLIGHT DIRECTOR
+    type: var
+    var_name: L:R09_001_SW2
+  - # MODE SELECTOR
+    type: var
+    var_name: L:R09_002_GL3
+  - # CHRONO START STOP BTN
+    type: var
+    var_name: L:R13_005_BUT
+
+
+
+#  - #############  CoPILOT PANELS - FRONT LOWER #############
+#  - ## UTILITY AND BOOSTER LIGHTS &BUTTONS ##
+  - # UTILITY LIGHT 1
+    type: var
+    var_name: L:R17_007_BUT
+  - #
+    type: var
+    var_name: L:R17_007_LT0
+  - # UTILITY LIGHT 2
+    type: var
+    var_name: L:R17_008_BUT
+  - #
+    type: var
+    var_name: L:R17_008_LT0
+  - # BOOSTER LIGHT 1
+    type: var
+    var_name: L:R17_009_BUT
+  - #
+    type: var
+    var_name: L:R17_009_LT0
+  - # BOOSTER LIGHT 2
+    type: var
+    var_name: L:R17_010_BUT
+  - #
+    type: var
+    var_name: L:R17_010_LT0
+#  - ## ENGINE HYDRAULIC PUMPS PANEL ##
+  - #
+    type: var
+    var_name: L:R17_016_SW2
+  - # 
+    type: NumSet
+    var_name: A:HYDRAULIC SWITCH:1
+    var_units: Bool
+    var_type: f64
+    event_name: HYDRAULIC_SWITCH_TOGGLE
+    event_param: 1
+  - #
+    type: var
+    var_name: L:R17_017_SW2
+  - # 
+    type: NumSet
+    var_name: A:HYDRAULIC SWITCH:2
+    var_units: Bool
+    var_type: f64
+    event_name: HYDRAULIC_SWITCH_TOGGLE
+    event_param: 2
+  - #
+    type: var
+    var_name: L:R17_018_SW2
+  - # 
+    type: NumSet
+    var_name: A:HYDRAULIC SWITCH:3
+    var_units: Bool
+    var_type: f64
+    event_name: HYDRAULIC_SWITCH_TOGGLE
+    event_param: 3
+  - #
+    type: var
+    var_name: L:R17_019_SW2
+  - # 
+    type: NumSet
+    var_name: A:HYDRAULIC SWITCH:4
+    var_units: Bool
+    var_type: f64
+    event_name: HYDRAULIC_SWITCH_TOGGLE
+    event_param: 4
+
+#  - #############  MISCELLANEOUS ITEMS ###############
+#  - ## CoPILOT ITEMS - MISCELLANEOUS ##
+  - #
+    type: var
+    var_name: L:M02_001_SW2
+  - #
+    type: var
+    var_name: L:M06_001_LVR
+  - #
+    type: var
+    var_name: L:M06_002_LVR
+  - #
+    type: var
+    var_name: L:M06_004_SW2
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:73
+    var_units: Bool
+    var_type: bool
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 73
+  - #
+    type: var
+    var_name: L:R_YOKE_HIDER
+  - #
+    type: var
+    var_name: L:R23_002_SW3
+  - #
+    type: var
+    var_name: L:R23_003_BUT
+
+#  - ## PILOT ITEMS - MISCELLANEOUS ##
+  - #
+    type: var
+    var_name: L:M01_001_SW2
+  - #
+    type: var
+    var_name: L:M05_001_LVR
+  - #
+    type: var
+    var_name: L:M05_002_LVR
+  - #
+    type: var
+    var_name: L:M05_003_SW2
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:72
+    var_units: Bool
+    var_type: bool
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 72 
+  - #
+    type: var
+    var_name: L:L_YOKE_HIDER
+  - #
+    type: var
+    var_name: L:L29_002_SW3
+  - #
+    type: var
+    var_name: L:L29_003_BUT
+
+#  - #############  OVERHEAD PANELS UPPER - LEFT #############
+#  - ## EMERGENCY LIGHTING SWITCHES ##
+  - # 
+    type: NumSet
+    var_name: A:LIGHT NAV
+    var_units: Bool
+    var_type: f64
+    event_name: TOGGLE_NAV_LIGHTS
+#    event_param: 1
+  - # 
+    type: NumSet
+    var_name: A:LIGHT BEACON
+    var_units: Bool
+    var_type: f64
+    event_name: TOGGLE_BEACON_LIGHTS
+#    event_param: 1 
+  - # 
+    type: NumSet
+    var_name: A:LIGHT WING
+    var_units: Bool
+    var_type: f64
+    event_name: TOGGLE_WING_LIGHTS
+#    event_param: 1 
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:81
+    var_units: Percent
+    var_type: i32
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 81 
+    index_reversed: true
+  - # 
+    type: NumSet
+    var_name: A:LIGHT PANEL ON:10
+    var_units: Bool
+    var_type: f64
+    event_name: LIGHT_PANEL_ON
+    event_param: 10
+
+#  - #############  OVERHEAD PANELS UPPER - CENTER #############
+#  - ## GAS TURBINE PANEL SWITCHES ##
+  - #
+    type: var
+    var_name: L:O03_002_SW2
+  - #
+    type: var
+    var_name: L:O03_001_GL3
+  - #
+    type: var
+    var_name: L:O03_004_LT0
+  - #
+    type: var
+    var_name: L:O03_004_BUT
+  - #
+    type: var
+    var_name: L:O03_008_LT0
+  - #
+    type: var
+    var_name: L:O03_008_BUT
+  - #
+    type: var
+    var_name: L:O03_006_LT0
+  - #
+    type: var
+    var_name: L:O03_006_BUT
+  - #
+    type: var
+    var_name: L:O03_003_SW2
+  - #
+    type: var
+    var_name: L:O03_005_LT0
+  - #
+    type: var
+    var_name: L:O03_005_BUT
+  - #
+    type: var
+    var_name: L:O03_007_SW2
+#  - ## ENGINE BLEED PANEL SWITCHES ##
+  - #
+    type: var
+    var_name: L:O04_001_SW3
+  - #
+    type: var
+    var_name: L:O04_002_SW3
+  - #
+    type: var
+    var_name: L:O04_003_SW3
+  - #
+    type: var
+    var_name: L:O04_004_SW3
+#  - ## ANTI-ICE PANEL SWITCHES ##
+  - #
+    type: var
+    var_name: L:O04_016_LT0
+  - #
+    type: var
+    var_name: L:O04_016_BTN
+  - #
+    type: var
+    var_name: L:O04_017_LT0
+  - #
+    type: var
+    var_name: L:O04_017_BTN
+  - #
+    type: var
+    var_name: L:O04_018_LT0
+  - #
+    type: var
+    var_name: L:O04_018_BTN
+  - # 
+    type: NumSet
+    var_name: A:STRUCTURAL DEICE SWITCH
+    var_units: Bool
+    var_type: f64
+    event_name: TOGGLE_STRUCTURAL_DEICE
+    event_param: 1 
+  - #
+    type: var
+    var_name: L:O04_019_LT0
+  - #
+    type: var
+    var_name: L:O04_019_BTN
+  - #
+    type: var
+    var_name: L:O04_020_LT0
+  - #
+    type: var
+    var_name: L:O04_020_BTN
+  - #
+    type: var
+    var_name: L:O04_021_LT0
+  - #
+    type: var
+    var_name: L:O04_021_BTN
+
+#  - ## GENERATOR PANEL SWITCHES ##
+  - # 
+    type: NumSet
+    var_name: A:GENERAL ENG MASTER ALTERNATOR:1
+    var_units: Bool
+    var_type: i32
+    event_name: TOGGLE_ALTERNATOR1
+    event_param: 1 
+  - # 
+    type: NumSet
+    var_name: A:GENERAL ENG MASTER ALTERNATOR:2
+    var_units: Bool
+    var_type: i32
+    event_name: TOGGLE_ALTERNATOR2
+    event_param: 2 
+  - # 
+    type: NumSet
+    var_name: A:GENERAL ENG MASTER ALTERNATOR:3
+    var_units: Bool
+    var_type: i32
+    event_name: TOGGLE_ALTERNATOR3
+    event_param: 3 
+  - # 
+    type: NumSet
+    var_name: A:GENERAL ENG MASTER ALTERNATOR:4
+    var_units: Bool
+    var_type: i32
+    event_name: TOGGLE_ALTERNATOR4
+    event_param: 4 
+  - # 
+    type: NumSet
+    var_name: A:APU GENERATOR SWITCH
+    var_units: Bool
+    var_type: i32
+    event_name: APU_GENERATOR_SWITCH_TOGGLE
+    event_param: 4 
+
+#  - ## AC/DC PANEL SWITCHES ##
+  - # 
+    type: NumSet
+    var_name: A:EXTERNAL POWER ON:1
+    var_units: Bool
+    var_type: f64
+    event_name: TOGGLE_EXTERNAL_POWER
+    event_param: 1
+  - #
+    type: var
+    var_name: L:O05_022_GL3
+  - #
+    type: var
+    var_name: L:O05_023_GL3
+  - #
+    type: var
+    var_name: L:O05_001_GL3
+  -
+    type: NumIncrement
+    var_name: A:ELECTRICAL MASTER BATTERY:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: MASTER_BATTERY_ON
+    down_event_name: MASTER_BATTERY_OFF
+    increment_by: 1
+#    unreliable: true
+  - # BUS TIE COVER and SWITCH
+    type: var
+    var_name: L:O05_047_CAP
+  - #
+    type: var
+    var_name: L:O05_047_SW2
+
+#  - #############  OVERHEAD PANELS UPPER - RIGHT #############
+#  - ## ANTI-ICE SWITCHES ##
+  - # 
+    type: NumSet
+    var_name: A:PITOT HEAT SWITCH:1
+    var_units: Bool
+    var_type: f64
+    event_name: PITOT_HEAT_SET
+    event_param: 1
+  - # 
+    type: NumSet
+    var_name: A:PITOT HEAT SWITCH:2
+    var_units: Bool
+    var_type: f64
+    event_name: PITOT_HEAT_SET
+    event_param: 2
+
+#  - ## ENGINE INLET ANTI-ICE PANEL SWITCHES ##
+  - # 
+    type: NumSet
+    var_name: A:ENG ANTI ICE:1
+    var_units: Bool
+    var_type: f64
+    event_name: ANTI_ICE_TOGGLE_ENG1
+#    event_param: 1
+  - # 
+    type: NumSet
+    var_name: A:ENG ANTI ICE:2
+    var_units: Bool
+    var_type: f64
+    event_name: ANTI_ICE_TOGGLE_ENG2
+#    event_param: 2
+  - # 
+    type: NumSet
+    var_name: A:ENG ANTI ICE:3
+    var_units: Bool
+    var_type: f64
+    event_name: ANTI_ICE_TOGGLE_ENG3
+#    event_param: 3
+  - # 
+    type: NumSet
+    var_name: A:ENG ANTI ICE:4
+    var_units: Bool
+    var_type: f64
+    event_name: ANTI_ICE_TOGGLE_ENG4
+#    event_param: 4
+
+#  - ## PROP ANTI-ICE PANEL SWITCHES ##
+  - #
+    type: var
+    var_name: L:O04_033_SW3
+  - # 
+    type: ToggleSwitch
+    var_name: A:PROP DEICE SWITCH:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_PROPELLER_DEICE
+    event_param: 1
+  - # 
+    type: ToggleSwitch
+    var_name: A:PROP DEICE SWITCH:2
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_PROPELLER_DEICE
+    event_param: 2
+  - # 
+    type: ToggleSwitch
+    var_name: A:PROP DEICE SWITCH:3
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_PROPELLER_DEICE
+    event_param: 3
+  - # 
+    type: ToggleSwitch
+    var_name: A:PROP DEICE SWITCH:4
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_PROPELLER_DEICE
+    event_param: 4
+  - # main dc bus/battery
+    type: var
+    var_name: L:O05_007_GL3
+
+
+#  - #############  OVERHEAD PANELS LOWER #############
+#  - ## BOOST PUMPS SWITCHES ##
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:1
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_PUMP_TOGGLE
+    event_param: 1
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:2
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_PUMP_TOGGLE
+    event_param: 2
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:3
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_PUMP_TOGGLE
+    event_param: 3
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:4
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_PUMP_TOGGLE
+    event_param: 4
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:5
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_PUMP_TOGGLE
+    event_param: 5
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:6
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_PUMP_TOGGLE
+    event_param: 6
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:7
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_PUMP_TOGGLE
+    event_param: 7
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM PUMP SWITCH:8
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_PUMP_TOGGLE
+    event_param: 8
+
+#  - ## CROSSFEED VALVE SWITCHES ##
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:1
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 1
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:2
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 2
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:3
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 3
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:4
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 4
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:5
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 5
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:6
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 6
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:7
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 7
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:8
+    var_units: Bool
+    var_type: f64
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 8
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:9
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 9
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:10
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 10
+  - # 
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:11
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 11
+
+#  - ## ENGINE STARTER SWITCHES ##
+  - #
+    type: var
+    var_name: L:O11_001_SW2
+  - # 
+    type: NumSet
+    var_name: A:GENERAL ENG STARTER:1
+    var_units: Bool
+    var_type: f64
+    event_name: TOGGLE_STARTER1
+#    event_param: 1
+  - #
+    type: var
+    var_name: L:O11_002_SW2
+  - # 
+    type: NumSet
+    var_name: A:GENERAL ENG STARTER:2
+    var_units: Bool
+    var_type: f64
+    event_name: TOGGLE_STARTER2
+#    event_param: 1
+  - #
+    type: var
+    var_name: L:O11_003_SW2
+  - # 
+    type: NumSet
+    var_name: A:GENERAL ENG STARTER:3
+    var_units: Bool
+    var_type: f64
+    event_name: TOGGLE_STARTER3
+#    event_param: 1
+  - #
+    type: var
+    var_name: L:O11_004_SW2
+  - # 
+    type: NumSet
+    var_name: A:GENERAL ENG STARTER:4
+    var_units: Bool
+    var_type: f64
+    event_name: TOGGLE_STARTER4
+#    event_param: 1
+
+#  - #############  PEDISTAL UPPER PANEL ###############
+#  - ## ADF-1 Controls ##
+  - #
+    type: var
+    var_name: L:P01_002_KNO
+  -
+    type: NumIncrement
+    var_name: A:ADF ACTIVE FREQUENCY:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: ADF_100_INC
+    down_event_name: ADF_100_DEC
+    increment_by: 1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:P01_005_KNO
+  - # 
+    type: NumIncrement
+    var_name: A:ADF ACTIVE FREQUENCY:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: ADF1_WHOLE_INC
+    down_event_name: ADF1_WHOLE_DEC
+    increment_by: 1
+    unreliable: true
+  -
+    type: NumIncrement
+    var_name: A:ADF VOLUME:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: ADF_VOLUME_INC
+    down_event_name: ADF_VOLUME_DEC
+    increment_by: 1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:P01_006_KNB
+  - # 
+    type: var
+    var_name: L:P01_004_GL2
+
+#  - ## COM 1 RADIO INTER PANEL ##
+  -
+    type: NumIncrement
+    var_name: A:COM VOLUME:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: COM1_VOLUME_INC
+    down_event_name: COM1_VOLUME_DEC
+    increment_by: 1
+    unreliable: true
+  - # 
+    type: var
+    var_name: L:P05_005_KNB
+
+#  - ## NAV 1 RADIO PANEL ##
+  -
+    type: NumIncrement
+    var_name: A:NAV ACTIVE FREQUENCY:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: NAV1_RADIO_FRACT_INC_CARRY
+    down_event_name: NAV1_RADIO_FRACT_DEC_CARRY
+    increment_by: 1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:P03_001_KNO
+  -
+    type: NumIncrement
+    var_name: A:NAV VOLUME:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: NAV1_VOLUME_INC
+    down_event_name: NAV1_VOLUME_DEC
+    increment_by: 1
+#    unreliable: true
+  - #
+    type: var
+    var_name: L:P03_003_KNO
+
+#  - ## NAV 2 RADIO ##
+  -
+    type: NumIncrement
+    var_name: A:NAV ACTIVE FREQUENCY:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: NAV2_RADIO_FRACT_INC_CARRY
+    down_event_name: NAV2_RADIO_FRACT_DEC_CARRY
+    increment_by: 1
+#    unreliable: true
+  - #
+    type: var
+    var_name: L:P02_001_KNO
+  -
+    type: NumIncrement
+    var_name: A:NAV VOLUME:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: NAV2_VOLUME_INC
+    down_event_name: NAV2_VOLUME_DEC
+    increment_by: 1
+#    unreliable: true
+  - #
+    type: var
+    var_name: L:P02_003_KNO
+
+#  - ## ADF 2 RADIO PANEL ##
+  -
+    type: NumIncrement
+    var_name: A:ADF ACTIVE FREQUENCY:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: ADF2_100_INC
+    down_event_name: ADF2_100_DEC
+    increment_by: 1
+#    unreliable: true
+  - #
+    type: var
+    var_name: L:P04_002_KNO
+  -
+    type: NumIncrement
+    var_name: A:ADF ACTIVE FREQUENCY:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: ADF2_WHOLE_INC
+    down_event_name: ADF2_WHOLE_DEC
+    increment_by: 1
+#    unreliable: true
+  - #
+    type: var
+    var_name: L:P04_005_KNO
+  -
+    type: NumIncrement
+    var_name: A:ADF VOLUME:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: ADF_VOLUME_INC
+    down_event_name: ADF_VOLUME_DEC
+    increment_by: 1
+#    unreliable: true
+  - #
+    type: var
+    var_name: L:P04_006_KNB
+
+  - #
+    type: var
+    var_name: L:P04_004_GL2
+
+#  - ## COM 2 RADIO INTER PANEL ##
+  -
+    type: NumIncrement
+    var_name: A:COM VOLUME:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: COM2_VOLUME_INC
+    down_event_name: COM2_VOLUME_DEC
+    increment_by: 1
+#    unreliable: true
+  - #
+    type: var
+    var_name: L:P06_005_KNB
+
+#  - #############  PEDISTAL QUADRANT AREA ###############
+#  - ## AUDIO PANEL Controls ##
+  - #
+    type: var
+    var_name: L:cs130_MARKER_VOLUME
+  -
+    type: NumSet
+    var_name: A:MARKER SOUND:1
+    var_units: Bool
+    var_type: f64
+    event_name: MARKER_SOUND_TOGGLE
+    cancel_h_events: true
+  -
+    type: NumIncrement
+    var_name: A:ADF SOUND:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: ADF_VOLUME_INC
+    down_event_name: ADF_VOLUME_DEC
+    increment_by: 1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:P07_002_KNB
+  -
+    type: NumIncrement
+    var_name: A:ADF SOUND:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: ADF2_VOLUME_INC
+    down_event_name: ADF2_VOLUME_DEC
+    increment_by: 1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:L:P07_006_KNB
+  -
+    type: NumIncrement
+    var_name: A:NAV SOUND:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: NAV1_VOLUME_INC
+    down_event_name: NAV1_VOLUME_DEC
+    increment_by: 1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:P07_003_KNB
+  -
+    type: NumIncrement
+    var_name: A:NAV SOUND:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: NAV2_VOLUME_INC
+    down_event_name: NAV2_VOLUME_DEC
+    increment_by: 1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:P07_007_KNB
+  -
+    type: NumIncrement
+    var_name: A:DME SOUND:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: NAV1_VOLUME_INC
+    down_event_name: NAV1_VOLUME_DEC
+    increment_by: 1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:P07_004_KNB
+  -
+    type: NumIncrement
+    var_name: A:DME SOUND:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: NAV2_VOLUME_INC
+    down_event_name: NAV2_VOLUME_DEC
+    increment_by: 1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:P07_008_KNB
+
+#  - ## GENERAL ENGINE THROTLES CONTROLS ##
+  - #
+    type: var
+    var_name: L:P10_001_LVR
+  - #
+    type: var
+    var_name: L:P10_002_LVR
+  - #
+    type: var
+    var_name: L:P10_003_LVR
+  - #
+    type: var
+    var_name: L:P10_004_LVR
+###### GENERAL CONDITION LEVERS - ***ADD THIS ######
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG MIXTURE LEVER POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    increment_by: 50
+    event_name: MIXTURE1_SET
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG MIXTURE LEVER POSITION:2
+    var_units: Position 16k
+    var_type: f64
+    increment_by: 50
+    event_name: MIXTURE2_SET
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG MIXTURE LEVER POSITION:3
+    var_units: Position 16k
+    var_type: f64
+    increment_by: 50
+    event_name: MIXTURE3_SET
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG MIXTURE LEVER POSITION:4
+    var_units: Position 16k
+    var_type: f64
+    increment_by: 50
+    event_name: MIXTURE4_SET
+    unreliable: true
+#  - ## PROP SYNCHRONIZATION Controls ##
+  - #
+    type: var
+    var_name: L:P12_001_SW3
+  - #
+    type: var
+    var_name: L:P12_001_SW2
+
+#  - #############  PEDISTAL LOWER LEFT COLUMN ###############
+#  - ## C130 TRIM Controls ##
+  - #
+    type: var
+    var_name: L:P15_101_SW3
+  - #
+    type: var
+    var_name: L:P15_001_SW3
+  - #
+    type: var
+    var_name: L:P15_002_SW3
+  -
+    type: ToggleSwitch
+    var_name: A:AILERON TRIM PCT
+    var_units: Percent
+    var_type: f64
+    event_name: AILERON_TRIM_SET_EX1
+    unreliable: true
+  -
+    type: ToggleSwitch
+    var_name: A:ELEVATOR TRIM PCT
+    var_units: Percent
+    var_type: f64
+    event_name: ELEVATOR_TRIM_SET_EX1
+  -
+    type: NumSet
+    var_name: A:RUDDER TRIM PCT
+    var_units: Percent scaler 16k
+    var_type: f64
+    event_name: RUDDER_TRIM_SET_EX1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:P15_002_SW3
+  - #
+    type: var
+    var_name: L:P19_008_BUT
+
+#  - ## AUTOPILOT SWITCH PANEL ##
+  - #
+    type: var
+    var_name: L:P19_001_GL4
+    type: NumSet
+    var_name: A:AUTOPILOT MASTER:1
+    var_units: Number
+    var_type: f64
+    event_name: AP_MASTER
+    add_by: -1
+    condition:
+       equals:
+         F64: 1
+    is_user_event: true
+# I will add another variable for this in the future to Turn the AP_MASTER back on. Looking for solutions
+  - #
+    type: var
+    var_name: L:P17_005_SW2
+  - #
+    type: var
+    var_name: L:P17_003_SW2    
+
+#  - ## SIF TRANSPONDER PANEL ##
+  - # ASOBO_Transponder_Knob_Value_Template
+    type: NumDigitSet
+    var_name: A:TRANSPONDER CODE:1
+    var_units: Number
+    var_type: i32
+    up_event_names:
+      - XPNDR_1_INC
+      - XPNDR_10_INC
+      - XPNDR_100_INC
+      - XPNDR_1000_INC
+    down_event_names:
+      - XPNDR_1_DEC
+      - XPNDR_10_DEC
+      - XPNDR_100_DEC
+      - XPNDR_1000_DEC
+    cancel_h_events: true
+
+#  - #############  PEDISTAL LOWER MIDDLE COLUMN ###############
+#  - ## GYRO PILOT Controls ##
+  - # Pitch Wheel
+    type: var
+    var_name: L:P17_002_KNB
+  - #
+    type: var
+    var_name: L:m133_AP_target_pitch
+    unreliable: true
+  - # Turning KNOB
+    type: var
+    var_name: L:P17_001_KNB
+  - # Altitude Switch
+    type: var
+    var_name: L:P17_003_SW2
+#  - ## FLAPS HANDLE Controls ## 
+  -
+    type: NumIncrement
+    var_name: A:FLAPS HANDLE INDEX
+    var_units: enum
+    var_type: f64    
+    up_event_name: FLAPS_INCR
+    down_event_name: FLAPS_DECR
+    increment_by: 1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:P22_001_HDL
+#  - #############  PEDISTAL LOWER RIGHT COLUMN ###############
+#  - ## COM 1 RADIO PANEL ## 
+  -
+    type: var
+    var_name: L:P20_001_KNO
+  -
+    type: NumIncrement
+    var_name: A:COM ACTIVE FEQUENCY:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: COM_RADIO_WHOLE_INC
+    down_event_name: COM_RADIO_WHOLE_DEC
+    increment_by: 1
+    unreliable: true
+  -
+    type: var
+    var_name: L:P20_004_KNO
+  -
+    type: NumIncrement
+    var_name: A:COM ACTIVE FEQUENCY:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: COM_RADIO_FRACT_INC
+    down_event_name: COM_RADIO_FRACT_DEC
+    increment_by: 1
+    unreliable: true
+  -
+    type: var
+    var_name: L:P20_005_KNB
+  -
+    type: NumIncrement
+    var_name: A:COM VOLUME:1
+    var_units: enum
+    var_type: f64    
+    up_event_name: COM1_VOLUME_INC
+    down_event_name: COM1_VOLUME_DEC
+    increment_by: 1
+    unreliable: true
+#  - ## COM 2 RADIO PANEL ## 
+  -
+    type: var
+    var_name: L:P21_001_KNO
+  -
+    type: NumIncrement
+    var_name: A:COM ACTIVE FEQUENCY:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: COM2_RADIO_WHOLE_INC
+    down_event_name: COM2_RADIO_WHOLE_DEC
+    increment_by: 1
+    unreliable: true
+  -
+    type: var
+    var_name: L:P21_004_KNO
+  -
+    type: NumIncrement
+    var_name: A:COM ACTIVE FEQUENCY:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: COM2_RADIO_FRACT_INC
+    down_event_name: COM2_RADIO_FRACT_DEC
+    increment_by: 1
+    unreliable: true
+  -
+    type: var
+    var_name: L:P21_005_KNB
+  -
+    type: NumIncrement
+    var_name: A:COM VOLUME:2
+    var_units: enum
+    var_type: f64    
+    up_event_name: COM2_VOLUME_INC
+    down_event_name: COM2_VOLUME_DEC
+    increment_by: 1
+    unreliable: true
+
+#  - #############  PILOT PANELS - LEFT ARM & BEHIND #############
+#  - ## PILOT LIGHTING SWITCHES ##
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:51
+    var_units: Bool
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 51 
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:52
+    var_units: Bool
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 52
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:53
+    var_units: Bool
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 53
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:54
+    var_units: Bool
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 54
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:55
+    var_units: Bool
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 55 
+  - # 
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:56
+    var_units: Bool
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 56 
+
+#  - ## PARATROOP PANEL SWITCHES - PILOT ##
+  - #
+    type: var
+    var_name: L:A02_006_BUT
+  - #
+    type: var
+    var_name: L:A02_006_LT0
+  - #
+    type: var
+    var_name: L:A02_005_CAP
+  - #
+    type: var
+    var_name: L:A02_005_sw3
+
+#  - ## CLIPBOARD SELECTOINS/OPTIONS - PILOT ##
+  - #
+    type: var
+    var_name: L:cs130_cool_flap1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:cs130_cool_flap2
+    unreliable: true
+  - #
+    type: var
+    var_name: L:cs130_cool_flap3
+    unreliable: true
+  - #
+    type: var
+    var_name: L:cs130_cool_flap4
+    unreliable: true
+  - #
+    type: var
+    var_name: L:cs130_clipboard_VIS
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_radome
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_radar
+  - # Radar Left Click
+    type: var
+    var_name: L:S12_003_GL5
+  - #
+    type: var
+    var_name: L:M01_001_SW2
+  - #
+    type: var
+    var_name: L:M02_001_SW2
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_interphone_hatch
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_oxy_hatch
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_ckt_brk_hatch
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_plugs
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_ep_hatch
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_wheel_chocks
+#  - #
+#    type: var
+#    var_name: L:cs130_anim_ctrl_l_door_1_a
+#    unreliable: true    
+  - #
+    type: var
+    var_name: L:M04_001_SW2
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng1_cowl_1
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng1_cowl_2
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng1_cowl_3
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng1_cowl_4
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng1_cowl_5
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng1_cowl_6
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng2_cowl_1
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng2_cowl_2
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng2_cowl_3
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng2_cowl_4
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng2_cowl_5
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng2_cowl_6
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng3_cowl_1
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng3_cowl_2
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng3_cowl_3
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng3_cowl_4
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng3_cowl_5
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng3_cowl_6
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng4_cowl_1
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng4_cowl_2
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng4_cowl_3
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng4_cowl_4
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng4_cowl_5
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng4_cowl_6
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng1_cvr
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng2_cvr
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng3_cvr
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_eng4_cvr
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_gear_doors
+#    unreliable: true
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_access_hatches
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_toolbox_hatches
+#    unreliable: true 
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_refuel_hatch
+#    unreliable: true 
+#  - #
+#    type: var
+#    var_name: L:cs130_anim_ctrl_l_door_2_a
+#    unreliable: true
+#  - #
+#    type: var
+#    var_name: L:cs130_anim_ctrl_r_door_1_a
+#    unreliable: true
+#  - #
+#    type: var
+#    var_name: L:cs130_anim_ctrl_cargo_door_a
+#    unreliable: true
+  - #
+    type: var
+    var_name: L:cs130_anim_ctrl_pilots_off
+#  - #
+#    type: var
+#    var_name: L:cs130_anim_ctrl_flag
+
+  - # NOSE WHEEL STEERING
+    type: NumSet
+    var_name: A:STEER INPUT CONTROL
+    var_units: Degrees
+    var_type: f64
+    event_name: HEADING_BUG_SET
+    event_param: 1
+    unreliable: true
+
+
+#  - #############  PILOT PANELS - FRONT UPPER #############
+#  - ## ACCELERATION LIMITS KNOB ##
+  - #
+    type: var
+    var_name: L:L02_004_BUT
+  - # CHRONO START STOP BTN
+    type: var
+    var_name: L:L23_005_BUT
+
+#  - ## RADIO ALTIMETER KNOB ##
+  - #
+    type: var
+    var_name: L:L22_002_KNO
+    unreliable: true
+  - #
+    type: var
+    var_name: L:L22_003_IND
+
+#  - ## HORIZONTAL SITUATION INDICATOR (HSI) KNOB ##
+  - #
+    type: var
+    var_name: L:L07_010_KNO
+    unreliable: true    
+  - #
+    type: var
+    var_name: L:L07_001_IND
+    unreliable: true
+  - #
+    type: var
+    var_name: L:L07_003_DG1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:L07_003_DG2
+    unreliable: true
+  - #
+    type: var
+    var_name: L:L07_003_DG3
+    unreliable: true
+  - #
+    type: var
+    var_name: L:L07_015_DG1
+    unreliable: true
+  - #
+    type: var
+    var_name: L:L07_015_DG2
+    unreliable: true
+  - #
+    type: var
+    var_name: L:L07_015_DG3
+    unreliable: true
+  - # COURSE KNOB
+    type: var
+    var_name: L:L07_007_KNO
+  - # 
+    type: NumSet
+    var_name: A:NAV OBS:1
+    var_units: Degrees
+    var_type: f64
+    event_name: VOR1_SET
+    event_param: 1
+    unreliable: true
+
+#  - ## ALTIMETER KNOB ##
+  - #
+    type: var
+    var_name: L:L08_005_KNO
+  - #
+    type: var
+    var_name: L:L08_004_IND
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:KOHLSMAN SETTING MB:1
+    var_units: Millibars scaler 16
+    var_type: f64
+    event_name: KOHLSMAN_SET
+    event_param: 1
+    cancel_h_events: true
+  - #
+    type: var
+    var_name: L:L10_001_SW2
+  - # MODE SEL SWITCH
+    type: var
+    var_name: L:L10_002_GL3
+  - # COURSE KNOB
+    type: NumSet
+    var_name: A:BRAKE PARKING POSITION
+    var_units: Bool
+    var_type: f64
+    event_name: PARKING_BRAKE_SET
+
+Master:
+#  - ## GENERAL ENGINE THROTLES CONTROLS ##
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG THROTTLE LEVER POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: THROTTLE1_SET
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG THROTTLE LEVER POSITION:2
+    var_units: Position 16k
+    var_type: f64
+    event_name: THROTTLE2_SET
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG THROTTLE LEVER POSITION:3
+    var_units: Position 16k
+    var_type: f64
+    event_name: THROTTLE3_SET
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG THROTTLE LEVER POSITION:4
+    var_units: Position 16k
+    var_type: f64
+    event_name: THROTTLE4_SET
+    unreliable: true
+
+server:
+  -
+    type: var
+    var_name: A:FUEL TANK LEFT MAIN LEVEL
+    var_units: Percent
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:FUEL TANK RIGHT MAIN LEVEL
+    var_units: Percent
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:1
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:2
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:3
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:4
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:5
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:6
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:7
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:8
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:9
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:10
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:11
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
